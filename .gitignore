@@ -1,0 +1,5 @@
+.cache
+commands.txt
+.env
+.pytest_cache/
+__pycache__/
