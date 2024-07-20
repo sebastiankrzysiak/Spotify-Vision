@@ -24,10 +24,11 @@ while True:
         for box in r.boxes:
             action = classNames[int(box.cls[0])]
             
+            
+            confidence = math.ceil((box.conf[0]*100))/100
+            
             # Uncomment the line below to see the confidence of the model
-            #confidence = math.ceil((box.conf[0]*100))/100
-
-            print(f"Action: {action}, Confidence: {confidence}")
+            # print(f"Action: {action}, Confidence: {confidence}")
 
             status = sv.is_playing()
 
