@@ -1,6 +1,5 @@
 import os
 import spotipy
-from dotenv import load_dotenv
 from spotipy.oauth2 import SpotifyOAuth
 
 DEVICE_ID = None
@@ -8,7 +7,6 @@ DEVICE_ID = None
 class SpotifyVision:
 
     def __init__(self):
-        load_dotenv()
 
         CLIENT_ID = "INSERT_CLIENT_ID HERE"
         CLIENT_SECRET = "INSERT_CLIENT_SECRET HERE"
