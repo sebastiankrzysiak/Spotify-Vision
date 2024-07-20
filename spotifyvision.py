@@ -118,7 +118,6 @@ class SpotifyVision:
                 response = int(input("\nEnter the number of the playlist you want to select: "))
                 selected_playlist_id = playlist_map[response]
                 print(f"You selected playlist ID: {selected_playlist_id}\n")
-                print(self.print_playing())
             except (ValueError, KeyError):
                 print("\nInvalid selection. Please enter a valid number.\n")
                 self.display_playlists()

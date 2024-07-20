@@ -13,6 +13,7 @@ classNames = ["like", "pause_resume", "redo", "stop", "skip"]
 stop = False
 
 sv.select_playlist()
+print(sv.print_playing())
 
 while True:
 
@@ -22,7 +23,9 @@ while True:
     for r in results:
         for box in r.boxes:
             action = classNames[int(box.cls[0])]
-            confidence = math.ceil((box.conf[0]*100))/100
+            
+            # Uncomment the line below to see the confidence of the model
+            #confidence = math.ceil((box.conf[0]*100))/100
 
             print(f"Action: {action}, Confidence: {confidence}")
 
