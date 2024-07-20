@@ -10,13 +10,13 @@ class SpotifyVision:
     def __init__(self):
         load_dotenv()
 
-        SPOTIPY_CLIENT_ID = os.getenv("SPOTIPY_CLIENT_ID")
-        SPOTIPY_CLIENT_SECRET = os.getenv("SPOTIPY_CLIENT_SECRET")
+        CLIENT_ID = "INSERT_CLIENT_ID HERE"
+        CLIENT_SECRET = "INSERT_CLIENT_SECRET HERE"
 
         scope ="user-read-playback-state,user-modify-playback-state,user-library-read,user-library-modify"
         redirect_uri = "http://localhost:8080"
-        self.sp = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id=SPOTIPY_CLIENT_ID,
-                                                       client_secret=SPOTIPY_CLIENT_SECRET,
+        self.sp = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id=CLIENT_ID,
+                                                       client_secret=CLIENT_SECRET,
                                                        redirect_uri=redirect_uri, scope=scope))
         if len(self.sp.devices()["devices"]) == 0:
             print("No devices found")
