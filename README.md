@@ -43,3 +43,7 @@ After selecting a playlist, a song will start playing from it. The terminal will
 The following hand gestures can be used to control the Spotify Player:
 
 ![Hands](Examples/hands-examples.png)
+
+## Video Example
+
+![Video](Examples/Spotify-Vision-Example.gif)
