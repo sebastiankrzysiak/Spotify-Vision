@@ -1,5 +1,7 @@
 # Spotify Vision
 
+![Video](Examples/Spotify-Vision-Example.gif)
+
 ## Introduction
 
 Spotify Vision is a project I created that allows users to control their Spotify Player using hand gestures. It leverages the Spotify API and computer vision technology. I trained an AI model using the Ultralytics YOLOv8 model to accurately recognize various hand gestures. These gestures include pausing and resuming a song, adding a song to a liked playlist, skipping a song, and closing the Spotify Player after use. In this article, I will provide instructions on how to successfully run the code.
@@ -43,7 +45,3 @@ After selecting a playlist, a song will start playing from it. The terminal will
 The following hand gestures can be used to control the Spotify Player:
 
 ![Hands](Examples/hands-examples.png)
-
-## Video Example
-
-![Video](Examples/Spotify-Vision-Example.gif)
