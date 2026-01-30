@@ -14,7 +14,11 @@ To use the Spotify API, you must have a [**Spotify account**](https://www.spotif
 1. Navigate to the [**Dashboard**](https://developer.spotify.com/dashboard) page on the Spotify for Developers site
 2. Click on the "Create App" button
 3. Provide a name and description for your app
-4. Set the "Redirect URIs" to **http://localhost:8888/callback** and **http://localhost:8080** in the text field
+4. Add **loopback** Redirect URIs (exact string match). For example:
+   - `http://127.0.0.1:8888/callback`
+   - `http://127.0.0.1:8080`
+
+   > Note: Spotify is deprecating insecure non-loopback HTTP redirects — using loopback addresses (127.0.0.1) or HTTPS avoids "Insecure redirect URI" errors.
 5. All the other fields can be left alone
 6. Check mark the agreement box
 7. Click the "Save" button
@@ -28,7 +32,16 @@ In this section, we will set up the code to run the Spotify Vision project.
 1. Create a virtual Python environment using either [**venv**](https://www.freecodecamp.org/news/how-to-setup-virtual-environments-in-python/) or [**conda**](https://www.geeksforgeeks.org/set-up-virtual-environment-for-python-using-anaconda/).
 2. Clone the project from [**GitHub**](https://github.com/sebastiankrzysiak/Spotify-Vision).
 3. Install the required libraries using the following command: **pip install -r requirements.txt**.
-4. Open the **spotifyvision.py** file and replace the **CLIENT_ID** and **CLIENT_SECRET** with the ones you obtained from the Spotify API.
+4. Use environment variables or a `.env` file (recommended) instead of editing source:
+   - Create a `.env` file in the project root with the following contents:
+     ```
+     SPOTIPY_CLIENT_ID=your_client_id_here
+     SPOTIPY_CLIENT_SECRET=your_client_secret_here
+     SPOTIPY_REDIRECT_URI=http://127.0.0.1:8080
+     ```
+   - The project already ignores `.env` so your secrets won't be committed.
+   - Alternatively, set variables in your shell profile (e.g., `~/.zshrc` or `~/.bashrc`).
+   - Do NOT hardcode secrets in source. Use a `.env` file (see `.env.example`) or environment variables. If your credentials were accidentally published, rotate the client secret in the Spotify Dashboard immediately.
 
 ## Running the Code
 

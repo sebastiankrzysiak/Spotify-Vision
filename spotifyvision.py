@@ -1,3 +1,6 @@
+import os
+from dotenv import load_dotenv
+load_dotenv()
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
 
@@ -6,15 +9,34 @@ DEVICE_ID = None
 class SpotifyVision:
 
     def __init__(self):
+        """
+        Spotify authentication uses environment variables:
+          - SPOTIPY_CLIENT_ID
+          - SPOTIPY_CLIENT_SECRET
+          - SPOTIPY_REDIRECT_URI (default: http://localhost:8888/callback)
+        """
+        CLIENT_ID = os.getenv("SPOTIPY_CLIENT_ID")
+        CLIENT_SECRET = os.getenv("SPOTIPY_CLIENT_SECRET")
 
-        CLIENT_ID = "INSERT_CLIENT_ID HERE"
-        CLIENT_SECRET = "INSERT_CLIENT_SECRET HERE"
+        if not CLIENT_ID or not CLIENT_SECRET:
+            print("ERROR: SPOTIPY_CLIENT_ID and SPOTIPY_CLIENT_SECRET must be set (use a .env file or environment variables).")
+            print("See README.md for setup instructions.")
+            exit(1)
 
-        scope ="user-read-playback-state,user-modify-playback-state,user-library-read,user-library-modify"
-        redirect_uri = "http://localhost:8080"
-        self.sp = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id=CLIENT_ID,
-                                                       client_secret=CLIENT_SECRET,
-                                                       redirect_uri=redirect_uri, scope=scope))
+        scope = "user-read-playback-state,user-modify-playback-state,user-library-read,user-library-modify"
+        redirect_uri = os.getenv("SPOTIPY_REDIRECT_URI", "http://127.0.0.1:8080")
+
+        # Debug / verification output
+        print(f"Using Redirect URI: {redirect_uri}")
+        auth_manager = SpotifyOAuth(client_id=CLIENT_ID,
+                                   client_secret=CLIENT_SECRET,
+                                   redirect_uri=redirect_uri,
+                                   scope=scope)
+        print("Authorize URL (verify this exact redirect URI is registered in your Spotify App settings):")
+        print(auth_manager.get_authorize_url())
+
+        self.sp = spotipy.Spotify(auth_manager=auth_manager)
+
         if len(self.sp.devices()["devices"]) == 0:
             print("No devices found")
             exit()
