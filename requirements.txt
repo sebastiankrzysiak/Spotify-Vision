@@ -1,4 +1,4 @@
-spotipy==2.25.1
+spotipy==2.25.2
 ultralytics==8.2.35
 opencv-python==4.9.0.80
 numpy==1.26.4
